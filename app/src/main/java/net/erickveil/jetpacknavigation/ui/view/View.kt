@@ -42,6 +42,10 @@ fun BlueScreen(navController: NavController) {
 
 @Composable
 fun ScreenLayout(color: Color, screenLabel: String, navController: NavController) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(color))
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -54,39 +58,45 @@ fun ScreenLayout(color: Color, screenLabel: String, navController: NavController
             fontWeight = FontWeight.Bold
         )
 
-        Button(
-            onClick = {
-                navController.navigate("pink") },
-            colors = ButtonDefaults.buttonColors( containerColor = Color(0xFFFFC0CB) )
-        ) {
-            Text("Go to Pink")
+        if (screenLabel != "Pink Screen") {
+            Button(
+                onClick = {
+                    navController.navigate("pink")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFC0CB))
+            ) {
+                Text("Go to Pink")
+            }
+        }
+
+        if (screenLabel != "Green Screen") {
+            Button(
+                onClick = {
+                    navController.navigate("green")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00FF00))
+            ) {
+                Text("Go to Green")
+            }
+        }
+
+        if (screenLabel != "Blue Screen") {
+            Button(
+                onClick = {
+                    navController.navigate("blue")
+                },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0000FF))
+            ) {
+                Text("Go to Blue")
+            }
         }
 
         Button(
             onClick = {
-                navController.navigate("green") },
-            colors = ButtonDefaults.buttonColors( containerColor = Color(0xFF00FF00) )
-        ) {
-            Text("Go to Green")
-        }
-
-        Button(
-            onClick = {
-                navController.navigate("blue") },
-            colors = ButtonDefaults.buttonColors( containerColor = Color(0xFF0000FF) )
-        ) {
-            Text("Go to Blue")
-        }
-
-        Button(
-            onClick = {
-                navController.navigate("blue") },
+                navController.popBackStack() },
             colors = ButtonDefaults.buttonColors( containerColor = Color.Gray )
         ) {
             Text("Back")
         }
     }
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color))
 }
