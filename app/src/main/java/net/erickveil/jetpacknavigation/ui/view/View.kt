@@ -91,12 +91,14 @@ fun ScreenLayout(color: Color, screenLabel: String, navController: NavController
             }
         }
 
-        Button(
-            onClick = {
-                navController.popBackStack() },
-            colors = ButtonDefaults.buttonColors( containerColor = Color.Gray )
-        ) {
-            Text("Back")
+        // shows the back button only if there is somewhere to go back to:
+        if (navController.previousBackStackEntry != null) {
+            Button(
+                onClick = { navController.popBackStack() },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Gray)
+            ) {
+                Text("Back")
+            }
         }
     }
 }
